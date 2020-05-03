@@ -85,12 +85,6 @@ RoboCopForm:
                     on_touch_move: app.root.whole_hand_callback(args[1])
 
 
-                Button:
-                    id: send_sig
-                    text: 'Send signal'
-                    on_press: app.root.send_signal()
-                    size_hint_x: 0.2
-
             BoxLayout:
                 size_hint_y: 0.1
                 orientation: 'horizontal'
@@ -125,6 +119,7 @@ RoboCopForm:
 
 
         BoxLayout:
+            id: gsts
             orientation: 'vertical'
             size_hint_x: 0.3
             spacing: 10
@@ -138,5 +133,6 @@ RoboCopForm:
                 size_hint_y: 0.3
 
                 Button:
-                    text: 'refresh gestures'
-                    on_press: app.root.test_scroll()
+                    id: send_sig
+                    text: 'Send signal'
+                    on_press: app.root.send_signal()

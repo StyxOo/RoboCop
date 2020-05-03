@@ -72,7 +72,7 @@ class RoboCopForm(BoxLayout):
             'f4': int(self.ids.f4.value),
             'f5': int(self.ids.f5.value)}
         print(json.dumps(fingers))
-        requests.get(url, params=fingers)
+        # requests.get(url, params=fingers)
 
     def send_gesture(self, key):
         global gestures
@@ -84,7 +84,7 @@ class RoboCopForm(BoxLayout):
             'f5': int(gestures[key][4]),
         }
         print(json.dumps(fingers))
-        requests.get(url, params=fingers)
+        # requests.get(url, params=fingers)
 
     def test_scroll(self):
         self.ids.gst_box.clear_widgets()
@@ -93,10 +93,12 @@ class RoboCopForm(BoxLayout):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         # Make sure the height is such that there is something to scroll.
         layout.bind(minimum_height=layout.setter('height'))
+        i = 0
         for g in gestures:
             btn = Button(text=str(g), size_hint_y=None, height=40)
             btn.on_press = partial(self.send_gesture, btn.text)
-            layout.add_widget(btn)
+            layout.add_widget(btn, index=i)
+            i += 1
         scroll_root = ScrollView(size_hint=(None, None), size=(self.ids.gst_box.width, self.ids.gst_box.height))
         scroll_root.add_widget(layout)
         self.ids.gst_box.add_widget(scroll_root)
