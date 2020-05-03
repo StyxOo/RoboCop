@@ -1,0 +1,138 @@
+RoboCopForm:
+
+<RoboCopForm>:
+    orientation: 'vertical'
+    padding: 10
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.95
+        spacing: 10
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.7
+            spacing: 10
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.9
+
+                Slider:
+                    id: f1
+                    min: 0
+                    max: 100
+                    step: 1
+                    orientation: 'vertical'
+                    value_track: True
+                    value_track_color: [1, 0, 0, 1]
+                    on_touch_move: app.root.single_finger_callback(args[1])
+                Slider:
+                    id: f2
+                    min: 0
+                    max: 100
+                    step: 1
+                    orientation: 'vertical'
+                    value_track: True
+                    value_track_color: [1, 0, 0, 1]
+                    on_touch_move: app.root.single_finger_callback(args[1])
+                Slider:
+                    id: f3
+                    min: 0
+                    max: 100
+                    step: 1
+                    orientation: 'vertical'
+                    value_track: True
+                    value_track_color: [1, 0, 0, 1]
+                    on_touch_move: app.root.single_finger_callback(args[1])
+                Slider:
+                    id: f4
+                    min: 0
+                    max: 100
+                    step: 1
+                    orientation: 'vertical'
+                    value_track: True
+                    value_track_color: [1, 0, 0, 1]
+                    on_touch_move: app.root.single_finger_callback(args[1])
+                Slider:
+                    id: f5
+                    min: 0
+                    max: 100
+                    step: 1
+                    orientation: 'vertical'
+                    value_track: True
+                    value_track_color: [1, 0, 0, 1]
+                    on_touch_move: app.root.single_finger_callback(args[1])
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.1
+                spacing: 10
+
+                Slider:
+                    id: whole_hand
+                    min: 0
+                    max: 100
+                    step: 1
+                    orientation: 'horizontal'
+                    value_track: True
+                    value_track_color: [0, 0, 1, 1]
+                    size_hint_x: 0.8
+                    on_touch_move: app.root.whole_hand_callback(args[1])
+
+
+                Button:
+                    id: send_sig
+                    text: 'Send signal'
+                    on_press: app.root.send_signal()
+                    size_hint_x: 0.2
+
+            BoxLayout:
+                size_hint_y: 0.1
+                orientation: 'horizontal'
+                Label:
+                    id: lf1
+                    text: str(f1.value)
+                Label:
+                    id: lf2
+                    text: str(f2.value)
+                Label:
+                    id: lf3
+                    text: str(f3.value)
+                Label:
+                    id: lf4
+                    text: str(f4.value)
+                Label:
+                    id: lf5
+                    text: str(f5.value)
+
+            BoxLayout:
+                spacing: 10
+                size_hint_y: 0.1
+                orientation: 'horizontal'
+                TextInput:
+                    id: new_gesture_txt
+                    size_hint_x: 0.7
+                Button:
+                    size_hint_x: 0.3
+                    text: 'Add new gesture'
+                    on_press: app.root.add_new_gesture_callback()
+
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.3
+            spacing: 10
+
+            BoxLayout:
+                size_hint_y: 0.7
+                orientation: 'vertical'
+                id: gst_box
+
+            BoxLayout:
+                size_hint_y: 0.3
+
+                Button:
+                    text: 'refresh gestures'
+                    on_press: app.root.test_scroll()
