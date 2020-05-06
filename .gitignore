@@ -2,3 +2,8 @@
 
 # VS-code extensions
 .history/
+
+# Pycharm
+.idea/
+venv/
+UI/config.json
