@@ -19,6 +19,7 @@ RoboCopForm:
                 size_hint_y: 0.9
 
                 Slider:
+                    size_hint_y: 0.3
                     id: f1
                     min: 0
                     max: 100
@@ -28,6 +29,7 @@ RoboCopForm:
                     value_track_color: [1, 0, 0, 1]
                     on_touch_move: app.root.single_finger_callback(args[1])
                 Slider:
+                    size_hint_y: 0.8
                     id: f2
                     min: 0
                     max: 100
@@ -46,6 +48,7 @@ RoboCopForm:
                     value_track_color: [1, 0, 0, 1]
                     on_touch_move: app.root.single_finger_callback(args[1])
                 Slider:
+                    size_hint_y: 0.8
                     id: f4
                     min: 0
                     max: 100
@@ -55,6 +58,7 @@ RoboCopForm:
                     value_track_color: [1, 0, 0, 1]
                     on_touch_move: app.root.single_finger_callback(args[1])
                 Slider:
+                    size_hint_y: 0.5
                     id: f5
                     min: 0
                     max: 100
@@ -81,30 +85,24 @@ RoboCopForm:
                     on_touch_move: app.root.whole_hand_callback(args[1])
 
 
-                Button:
-                    id: send_sig
-                    text: 'Send signal'
-                    on_press: app.root.send_signal()
-                    size_hint_x: 0.2
-
             BoxLayout:
                 size_hint_y: 0.1
                 orientation: 'horizontal'
                 Label:
                     id: lf1
-                    text: str(f1.value)
+                    text: str(int(f1.value))
                 Label:
                     id: lf2
-                    text: str(f2.value)
+                    text: str(int(f2.value))
                 Label:
                     id: lf3
-                    text: str(f3.value)
+                    text: str(int(f3.value))
                 Label:
                     id: lf4
-                    text: str(f4.value)
+                    text: str(int(f4.value))
                 Label:
                     id: lf5
-                    text: str(f5.value)
+                    text: str(int(f5.value))
 
             BoxLayout:
                 spacing: 10
@@ -121,6 +119,7 @@ RoboCopForm:
 
 
         BoxLayout:
+            id: gsts
             orientation: 'vertical'
             size_hint_x: 0.3
             spacing: 10
@@ -134,5 +133,6 @@ RoboCopForm:
                 size_hint_y: 0.3
 
                 Button:
-                    text: 'refresh gestures'
-                    on_press: app.root.test_scroll()
+                    id: send_sig
+                    text: 'Send signal'
+                    on_press: app.root.send_signal()

@@ -45,6 +45,7 @@ class RoboCopForm(BoxLayout):
         print(gestures)
         with open("gestures.json", "w+") as write_file:
             json.dump(gestures, write_file,  ensure_ascii=True, indent=4)
+        self.test_scroll()
 
     def whole_hand_callback(self, touch):
         if self.ids.whole_hand.collide_point(*touch.pos):
@@ -65,23 +66,25 @@ class RoboCopForm(BoxLayout):
 
     def send_signal(self):
         fingers = {
-            'f1': self.ids.f1.value,
-            'f2': self.ids.f2.value,
-            'f3': self.ids.f3.value,
-            'f4': self.ids.f4.value,
-            'f5': self.ids.f5.value}
+            'f1': int(self.ids.f1.value),
+            'f2': int(self.ids.f2.value),
+            'f3': int(self.ids.f3.value),
+            'f4': int(self.ids.f4.value),
+            'f5': int(self.ids.f5.value)}
         print(json.dumps(fingers))
+        requests.get(url, params=fingers)
 
     def send_gesture(self, key):
         global gestures
         fingers = {
-            'finger 1':gestures[key][0],
-            'finger 2': gestures[key][1],
-            'finger 3': gestures[key][2],
-            'finger 4': gestures[key][3],
-            'finger 5': gestures[key][4],
+            'f1': int(gestures[key][0]),
+            'f2': int(gestures[key][1]),
+            'f3': int(gestures[key][2]),
+            'f4': int(gestures[key][3]),
+            'f5': int(gestures[key][4]),
         }
         print(json.dumps(fingers))
+        requests.get(url, params=fingers)
 
     def test_scroll(self):
         self.ids.gst_box.clear_widgets()
@@ -90,10 +93,12 @@ class RoboCopForm(BoxLayout):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         # Make sure the height is such that there is something to scroll.
         layout.bind(minimum_height=layout.setter('height'))
+        i = 0
         for g in gestures:
             btn = Button(text=str(g), size_hint_y=None, height=40)
             btn.on_press = partial(self.send_gesture, btn.text)
-            layout.add_widget(btn)
+            layout.add_widget(btn, index=i)
+            i += 1
         scroll_root = ScrollView(size_hint=(None, None), size=(self.ids.gst_box.width, self.ids.gst_box.height))
         scroll_root.add_widget(layout)
         self.ids.gst_box.add_widget(scroll_root)
