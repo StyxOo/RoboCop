@@ -49,15 +49,15 @@ def _create_request_url():
 def _send_request(f1=None, f2=None, f3=None, f4=None, f5=None):
     payload = {}
     if f1 is not None:
-        payload['finger1'] = f1
+        payload['f1'] = f1
     if f2 is not None:
-        payload['finger2'] = f2
+        payload['f2'] = f2
     if f3 is not None:
-        payload['finger3'] = f3
+        payload['f3'] = f3
     if f4 is not None:
-        payload['finger4'] = f4
+        payload['f4'] = f4
     if f5 is not None:
-        payload['finger5'] = f5
+        payload['f5'] = f5
     print(payload)
     r = requests.get(_create_request_url(), params=payload)
     print("Request returned status: {}".format(r.status_code))
