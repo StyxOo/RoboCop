@@ -1,6 +1,6 @@
 import requests
 
-u = 'http://192.168.137.249:1880/fail'
+url = 'http://192.168.137.249:1880/fail'
 
 
 def main():

@@ -59,7 +59,7 @@ class RoboCopForm(BoxLayout):
         print(gestures)
         with open("gestures.json", "w+") as write_file:
             json.dump(gestures, write_file,  ensure_ascii=True, indent=4)
-        self.test_scroll()
+        self.refresh_gestures()
 
     def whole_hand_callback(self, touch):
         if self.ids.whole_hand.collide_point(*touch.pos):
@@ -87,8 +87,8 @@ class RoboCopForm(BoxLayout):
             'f5': int(self.ids.f5.value)}
         print(json.dumps(fingers))
         # requests.get(url, params=fingers)
-        wrapper.move_hand(int(self.ids.f1.value), int(self.ids.f2.value),
-                          int(self.ids.f3.value), int(self.ids.f4.value), int(self.ids.f5.value))
+        # wrapper.move_hand(int(self.ids.f1.value), int(self.ids.f2.value),
+        #                   int(self.ids.f3.value), int(self.ids.f4.value), int(self.ids.f5.value))
 
     def send_gesture(self, key):
         global gestures
@@ -101,13 +101,13 @@ class RoboCopForm(BoxLayout):
         }
         print(json.dumps(fingers))
         # requests.get(url, params=fingers)
-        wrapper.move_hand(int(gestures[key][0]),
-                              int(gestures[key][1]),
-                              int(gestures[key][2]),
-                              int(gestures[key][3]),
-                              int(gestures[key][4]))
+        # wrapper.move_hand(int(gestures[key][0]),
+        #                       int(gestures[key][1]),
+        #                       int(gestures[key][2]),
+        #                       int(gestures[key][3]),
+        #                       int(gestures[key][4]))
 
-    def test_scroll(self):
+    def refresh_gestures(self):
         self.ids.gst_box.clear_widgets()
         global gestures
         load_gestures()
@@ -131,4 +131,5 @@ class Wid1App(App):
 
 if __name__ == '__main__':
     load_gestures()
-    Wid1App().run()
+    app = Wid1App().run()
+
