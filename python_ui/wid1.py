@@ -146,7 +146,7 @@ class Wid1App(App):
             self.root.refresh_gestures()
 
         # callback(str(5))
-        Clock.schedule_once(partial(callback), 3)
+        Clock.schedule_once(partial(callback), 8)
 
 
 if __name__ == '__main__':

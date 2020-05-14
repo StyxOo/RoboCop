@@ -11,29 +11,46 @@ RoboCopForm:
 
         BoxLayout:
             orientation: 'vertical'
-            size_hint_x: 0.5
+            size_hint_x: 0.2
             spacing: 10
 
             BoxLayout:
                 orientation: 'horizontal'
                 size_hint_y: 0.9
 
-                Slider:
-                    size_hint_y: 0.5
-                    id: f1
-                    min: 0
-                    max: 100
-                    step: 1
+                BoxLayout:
                     orientation: 'vertical'
-                    value_track: True
-                    value_track_color: [1, 0, 0, 1]
-                    on_touch_move: app.root.single_finger_callback(args[1])
+                    size_hint_x: 0.1
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: 0.35
+
+                    Slider:
+                        size_hint_y: 0.4
+                        id: f1
+                        min: 0
+                        max: 100
+                        step: 1
+                        orientation: 'vertical'
+                        value_track: True
+                        value_track_color: [1, 0, 0, 1]
+                        on_touch_move: app.root.single_finger_callback(args[1])
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: 0.15
 
                 BoxLayout:
                     orientation: 'vertical'
+                    size_hint_x: 0.1
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: 0.1
 
                     Slider:
-                        size_hint_y: 0.8
+                        size_hint_y: 0.5
                         id: f2
                         min: 0
                         max: 100
@@ -49,10 +66,15 @@ RoboCopForm:
 
                 BoxLayout:
                     orientation: 'vertical'
+                    size_hint_x: 0.1
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: 0.01
 
                     Slider:
                         id: f3
-                        size_hint_y: 0.8
+                        size_hint_y: 0.57
                         min: 0
                         max: 100
                         step: 1
@@ -63,13 +85,19 @@ RoboCopForm:
 
                     BoxLayout:
                         orientation: 'vertical'
-                        size_hint_y: 0.4
+                        size_hint_y: 0.42
+
 
                 BoxLayout:
                     orientation: 'vertical'
+                    size_hint_x: 0.1
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: 0.075
 
                     Slider:
-                        size_hint_y: 0.8
+                        size_hint_y: 0.525
                         id: f4
                         min: 0
                         max: 100
@@ -85,9 +113,14 @@ RoboCopForm:
 
                 BoxLayout:
                     orientation: 'vertical'
+                    size_hint_x: 0.04
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: 0.25
 
                     Slider:
-                        size_hint_y: 0.8
+                        size_hint_y: 0.4
                         id: f5
                         min: 0
                         max: 100
@@ -99,7 +132,11 @@ RoboCopForm:
 
                     BoxLayout:
                         orientation: 'vertical'
-                        size_hint_y: 0.4
+                        size_hint_y: 0.35
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: 0.1
 
             BoxLayout:
                 orientation: 'horizontal'
