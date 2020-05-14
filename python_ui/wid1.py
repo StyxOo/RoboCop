@@ -1,8 +1,10 @@
 import json
 import os
+from asyncio import sleep
 from functools import partial
 
 from kivy.app import App
+from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -126,7 +128,11 @@ class RoboCopForm(BoxLayout):
 
 
 class Wid1App(App):
-    pass
+    def on_start(self, **kwargs):
+        def callback(a):
+            self.root.refresh_gestures()
+        # callback(str(5))
+        Clock.schedule_once(partial(callback), 2)
 
 
 if __name__ == '__main__':
