@@ -1,7 +1,20 @@
+
+import importlib
+spam_loader = importlib.util.find_spec('kivy')
+if spam_loader is None:
+    print('You need kivy installed to run this program')
+    exit(1)
+
+
 import json
 import os
 from asyncio import sleep
 from functools import partial
+
+from kivy import Config
+from kivy.config import Config
+
+Config.set('graphics', 'resizable', 0)
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -19,8 +32,8 @@ gestures = {}
 
 on_off = 'OFF'
 
-
 url = 'http://192.168.137.249:1880/fail'
+
 
 def load_gestures():
     global gestures
@@ -60,7 +73,7 @@ class RoboCopForm(BoxLayout):
         )
         print(gestures)
         with open("gestures.json", "w+") as write_file:
-            json.dump(gestures, write_file,  ensure_ascii=True, indent=4)
+            json.dump(gestures, write_file, ensure_ascii=True, indent=4)
         self.refresh_gestures()
 
     def whole_hand_callback(self, touch):
@@ -131,11 +144,12 @@ class Wid1App(App):
     def on_start(self, **kwargs):
         def callback(a):
             self.root.refresh_gestures()
+
         # callback(str(5))
-        Clock.schedule_once(partial(callback), 2)
+        Clock.schedule_once(partial(callback), 3)
 
 
 if __name__ == '__main__':
     load_gestures()
+    Config.set('graphics', 'resizable', False)
     app = Wid1App().run()
-
