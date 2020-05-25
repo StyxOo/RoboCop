@@ -19,3 +19,35 @@ if not os.path.isfile(_config_path):
 
 with open(_config_path) as config_file:
     _config = json.load(config_file)
+
+
+def _write_config():
+    if os.path.isfile(_config_path):
+        os.remove(_config_path)
+
+    with open(_config_path, 'w') as config_file:
+        json.dump(_config, config_file)
+
+
+def set_ip(ip, store=False):
+    _config['ip'] = ip
+    if store:
+        _write_config()
+
+
+def set_port(port, store=False):
+    _config['port'] = port
+    if store:
+        _write_config()
+
+
+def set_url(url, store=False):
+    _config['url'] = url
+    if store:
+        _write_config()
+
+
+def set_use_save_connection(use_save_connection, store=False):
+    _config['save'] = use_save_connection
+    if store:
+        _write_config()
