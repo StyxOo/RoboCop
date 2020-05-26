@@ -1,3 +1,7 @@
+'''
+This file controls the graphical user interface
+'''
+
 
 import importlib
 spam_loader = importlib.util.find_spec('kivy')
