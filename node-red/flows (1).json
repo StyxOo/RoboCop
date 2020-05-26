@@ -1,1 +1,0 @@
-[{"id":"4b1c53a0.cafbfc","type":"rpi-gpio out","z":"95b61c43.2f608","name":"","pin":"11","set":false,"level":"0","freq":"100","out":"pwm","x":493.7716979980469,"y":271.26300048828125,"wires":[]}]
