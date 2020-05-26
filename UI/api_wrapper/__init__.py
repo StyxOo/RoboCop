@@ -6,7 +6,7 @@ _config_path = './config.json'
 
 
 def _create_config():
-    data = {'ip': '192.0.0.1', 'port': '1880', 'url': '/fail', 'save': False}
+    data = {'ip': '192.0.0.1', 'port': '1880', 'save': False}
 
     with open(_config_path, 'w') as conf_file:
         json.dump(data, conf_file)
