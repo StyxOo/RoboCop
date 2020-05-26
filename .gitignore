@@ -6,4 +6,6 @@
 # Pycharm
 .idea/
 venv/
-UI/config.json
+__pycache__/
+config.json
+gestures.json
