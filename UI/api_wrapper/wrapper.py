@@ -2,63 +2,28 @@ import os
 import json
 import requests
 from . import _config
-from . import _config_path
-
-
-def _write_config():
-    if os.path.isfile(_config_path):
-        os.remove(_config_path)
-
-    with open(_config_path, 'w') as config_file:
-        json.dump(_config)
-
-
-def set_ip(ip, store=False):
-    _config['ip'] = ip
-    if store:
-        _write_config()
-
-
-def set_port(port, store=False):
-    _config['port'] = port
-    if store:
-        _write_config()
-
-
-def set_url(url, store=False):
-    _config['url'] = url
-    if store:
-        _write_config()
-
-
-def set_use_save_connection(use_save_connection, store=False):
-    _config['save'] = use_save_connection
-    if store:
-        _write_config()
 
 
 def _create_request_url():
     url = 'http'
     if _config['save']:
         url += 's'
-    url += '://{}:{}{}'.format(_config['ip'], _config['port'], _config['url'])
-    print(url)
+    url += '://{}:{}/move'.format(_config['ip'], _config['port'])
     return url
 
 
 def _send_request(f1=None, f2=None, f3=None, f4=None, f5=None):
     payload = {}
     if f1 is not None:
-        payload['f1'] = f1
+        payload['finger1'] = f1
     if f2 is not None:
-        payload['f2'] = f2
+        payload['finger2'] = f2
     if f3 is not None:
-        payload['f3'] = f3
+        payload['finger3'] = f3
     if f4 is not None:
-        payload['f4'] = f4
+        payload['finger4'] = f4
     if f5 is not None:
-        payload['f5'] = f5
-    print(payload)
+        payload['finger5'] = f5
     r = requests.get(_create_request_url(), params=payload)
     print("Request returned status: {}".format(r.status_code))
 
