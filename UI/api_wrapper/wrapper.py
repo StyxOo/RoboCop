@@ -38,10 +38,10 @@ def set_use_save_connection(use_save_connection, store=False):
 
 
 def _create_request_url():
-    # url = 'http'
-    # if _config['save']:
-    #     url += 's'
-    url = '{}:{}{}'.format(_config['ip'], _config['port'], _config['url'])
+    url = 'http'
+    if _config['save']:
+        url += 's'
+    url += '://{}:{}{}'.format(_config['ip'], _config['port'], _config['url'])
     print(url)
     return url
 
