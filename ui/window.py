@@ -3,8 +3,8 @@ This file controls the graphical user interface
 '''
 
 
-import importlib
-spam_loader = importlib.util.find_spec('kivy')
+from importlib import util
+spam_loader = util.find_spec('kivy')
 if spam_loader is None:
     print('You need kivy installed to run this program')
     exit(1)
@@ -17,8 +17,8 @@ from functools import partial
 
 from kivy import Config
 from kivy.config import Config
-from api_wrapper import wrapper, config
-import api_wrapper
+from api import wrapper, config
+import api
 
 Config.set('graphics', 'resizable', 0)
 
@@ -30,9 +30,7 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 
-from api_wrapper import wrapper
-
-import requests
+from api import wrapper
 
 gestures = {}
 
@@ -169,7 +167,7 @@ class RoboCopForm(BoxLayout):
         self.ids.gst_box.add_widget(scroll_root)
 
 
-class Wid1App(App):
+class LayoutApp(App):
     def on_start(self, **kwargs):
         def callback(a):
             self.root.refresh_gestures()
@@ -180,7 +178,7 @@ class Wid1App(App):
 
 if __name__ == '__main__':
     load_gestures()
-    if api_wrapper.first_time_function():
+    if api.first_time_function():
         config.main()
     Config.set('graphics', 'resizable', False)
-    app = Wid1App().run()
+    app = LayoutApp().run()
