@@ -1,7 +1,7 @@
 import os
 import json
 import requests
-from . import _config
+from api.api_wrapper import _config
 
 
 def _create_request_url():
