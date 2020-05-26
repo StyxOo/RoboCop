@@ -1,12 +1,14 @@
 import os
 import json
+# from _csv import _writer
 
+# from numpy.ma.core import _convert2ma
 
 _config_path = './config.json'
 
 
 def _create_config():
-    data = {'ip': '192.0.0.1', 'port': '1880', 'save': False}
+    data = {'ip': '192.0.0.1', 'port': '1880', 'save': False, 'flag': True}
 
     with open(_config_path, 'w') as conf_file:
         json.dump(data, conf_file)
@@ -51,3 +53,10 @@ def set_use_save_connection(use_save_connection, store=False):
     _config['save'] = use_save_connection
     if store:
         _write_config()
+
+def first_time_function():
+    flag = _config['flag']
+    if flag:
+        _config['flag'] = False
+        _write_config()
+    return flag

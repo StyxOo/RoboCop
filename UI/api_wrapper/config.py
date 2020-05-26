@@ -44,5 +44,9 @@ save_button = tk.Button(text="Save", width=20, height=3, command=save_config)
 save_button.grid(row=4, column=0, columnspan=2)
 
 
-if __name__ == '__main__':
+def main():
     window.mainloop()
+
+
+if __name__ == '__main__':
+    main()

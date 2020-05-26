@@ -13,6 +13,8 @@ from functools import partial
 
 from kivy import Config
 from kivy.config import Config
+from api_wrapper import wrapper, config
+import api_wrapper
 
 Config.set('graphics', 'resizable', 0)
 
@@ -54,11 +56,14 @@ class RoboCopForm(BoxLayout):
         if self.ids.on_off_btn.text == 'OFF':
             self.ids.on_off_btn.text = 'ON'
             on_off = 'ON'
+            # call function
         elif self.ids.on_off_btn.text == 'ON':
             self.ids.on_off_btn.text = 'OFF'
             on_off = 'OFF'
-        else:
-            pass
+            # call function
+        print(on_off)
+        # call_function
+
 
     def add_new_gesture_callback(self):
         if self.ids.new_gesture_txt.text == "":
@@ -153,5 +158,7 @@ class Wid1App(App):
 
 if __name__ == '__main__':
     load_gestures()
+    if api_wrapper.first_time_function():
+        config.main()
     Config.set('graphics', 'resizable', False)
     app = Wid1App().run()
