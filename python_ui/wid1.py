@@ -56,18 +56,21 @@ def load_gestures():
 
 class RoboCopForm(BoxLayout):
 
-    def on_off_callback(self):
-        '''A function that controls Fans'''
-        if self.ids.on_off_btn.text == 'OFF':
-            self.ids.on_off_btn.text = 'ON'
-            on_off = 'ON'
-            # call function
-        elif self.ids.on_off_btn.text == 'ON':
-            self.ids.on_off_btn.text = 'OFF'
-            on_off = 'OFF'
-            # call function
-        print(on_off)
-        # call_function
+    def url_manager(self):
+        # '''A function that controls Fans'''
+        # if self.ids.on_off_btn.text == 'OFF':
+        #     self.ids.on_off_btn.text = 'ON'
+        #     on_off = 'ON'
+        #     # call function
+        # elif self.ids.on_off_btn.text == 'ON':
+        #     self.ids.on_off_btn.text = 'OFF'
+        #     on_off = 'OFF'
+        #     # call function
+        # print(on_off)
+        # # call_function
+        print('manage me??')
+        config.main()
+
 
 
     def add_new_gesture_callback(self):
