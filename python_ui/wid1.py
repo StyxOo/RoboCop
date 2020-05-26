@@ -53,6 +53,7 @@ def load_gestures():
 class RoboCopForm(BoxLayout):
 
     def on_off_callback(self):
+        '''A function that controls Fans'''
         if self.ids.on_off_btn.text == 'OFF':
             self.ids.on_off_btn.text = 'ON'
             on_off = 'ON'
@@ -66,6 +67,8 @@ class RoboCopForm(BoxLayout):
 
 
     def add_new_gesture_callback(self):
+        '''Only new gesture with no empty name will be saved,
+        the gesture is the current position of the fingers in the ui'''
         if self.ids.new_gesture_txt.text == "":
             return
         global gestures
@@ -82,6 +85,8 @@ class RoboCopForm(BoxLayout):
         self.refresh_gestures()
 
     def whole_hand_callback(self, touch):
+        '''This callback is associated to
+        the slider controlling the whole hand'''
         if self.ids.whole_hand.collide_point(*touch.pos):
             self.ids.f1.value = self.ids.whole_hand.value
             self.ids.f2.value = self.ids.whole_hand.value
@@ -91,6 +96,8 @@ class RoboCopForm(BoxLayout):
             self.send_signal()
 
     def single_finger_callback(self, touch):
+        '''This callback is associated to the movement
+        of any of the five fingers'''
         if (self.ids.f1.collide_point(*touch.pos) or
                 self.ids.f2.collide_point(*touch.pos) or
                 self.ids.f3.collide_point(*touch.pos) or
@@ -99,6 +106,9 @@ class RoboCopForm(BoxLayout):
             self.send_signal()
 
     def send_signal(self):
+        '''This callback is called whenever
+        the user moves one of the singular fingers
+        or the slider controlling the whole hand'''
         fingers = {
             'f1': int(self.ids.f1.value),
             'f2': int(self.ids.f2.value),
@@ -111,7 +121,10 @@ class RoboCopForm(BoxLayout):
         # wrapper.move_hand(int(self.ids.f1.value), int(self.ids.f2.value),
         #                   int(self.ids.f3.value), int(self.ids.f4.value), int(self.ids.f5.value))
 
+
     def send_gesture(self, key):
+        '''This callback is called when the user
+        presses one of the saved gestures'''
         global gestures
         fingers = {
             'f1': int(gestures[key][0]),
@@ -130,6 +143,8 @@ class RoboCopForm(BoxLayout):
         #                       int(gestures[key][4]))
 
     def refresh_gestures(self):
+        '''This function is called whenever the user
+        adds new gestures to update the list of buttons'''
         self.ids.gst_box.clear_widgets()
         global gestures
         load_gestures()
