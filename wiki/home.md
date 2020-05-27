@@ -7,7 +7,6 @@ The documentation for all aspects of the robotic hand project.
 
 ### Aha?
 Our goal was to control a robotic hand via custom GUI . The mechanical part of the hand already existed. It was the result of another project. We exchanged the custom controller board with a raspberry pi and created a whole new interface.  
-TODO: Video  
 
 ### Cool! Can I have that as well?
 Of course. And really easy as well. But let us start at the beginning.
@@ -15,16 +14,9 @@ Of course. And really easy as well. But let us start at the beginning.
 ***
 
 #### Giving life to the brain of the arm
-Plug in the raspberry pi. It is that simple. It will take some time to fully come alive, so feel free to grab a coffe. The next thing we do is opening the GUI. You can even find it in this repository. Simply run `python ui/window.py` in the gits root directory. If it is your first time, it should now look like this:
-[IMAGE](image)  
-Here you should enter the local ip of the brain. To find out how to find it, please have a look [here](https://techtutorialsx.com/2018/05/20/raspberry-pi-3-getting-the-local-ip-address/). The default port used is 1880. If you have not yet messed with the project, You do not need to change it. Otherwise you probably know which port you set it to. The one that the raspberry pi's local node-red server is running on. Oh you want to change it? [No problem](https://nodered.org/docs/user-guide/runtime/configuration).
-Once you save the configuration, it will open the main ui. You will be greeted with this screen:
-[IMAGE](image)  
-Pretty cool, right? Now you can start moving fingers and making gestures.
+Plug in the raspberry pi. It is that simple. It will take some time to fully come alive, so feel free to grab a coffe. The next thing we do is opening the GUI. You can even find it in this repository. Simply run `python ui/window.py` in the gits root directory. If it is your first time, a small configuration window will open. Here you should enter the local ip of the brain. To find out how to get it, please have a look [here](https://techtutorialsx.com/2018/05/20/raspberry-pi-3-getting-the-local-ip-address/). The default port used is 1880. If you have not yet messed with the project, You do not need to change it. Otherwise you probably know which port you set it to. The one that the raspberry pi's local node-red server is running on. Oh you want to change it? [No problem](https://nodered.org/docs/user-guide/runtime/configuration). Once you save the configuration, it will open the main ui. Pretty cool, right? Now you can start moving fingers and making gestures.
 #### But nothing is moving
-In this case, you still need to bring life to the actual arm itself. Simply connect the power supply. In our case, this means attaching a 7.4V 1500mA power supply. If this info does not help you, please ask someone familiar with electronics. Because making errors here can result in damaging the hardware. In our case it now looks like this:
-[IMAGE](LINK)
-Once this is done, we are good to go. Move fingers as you please, save current finger extensions with names
+In this case, you still need to bring life to the actual arm itself. Make sure to connect the servos to the raspberry pi according to plan which can be found [here](https://drive.google.com/open?id=18ZfR2myknuc65xAsuhYd7-_QgcQwy19Y). Next we need to supply the servos with power. They require a DC 6.0~7.4V power supply. If this info does not help you, please ask someone familiar with electronics. Because making errors here can result in damaging the hardware. Once this is done, we are good to go. Move fingers as you please and save current finger extensions as gestures.
 
 ***
 
