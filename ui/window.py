@@ -117,6 +117,12 @@ class RoboCopForm(BoxLayout):
         '''This callback is called whenever
         the user moves one of the singular fingers
         or the slider controlling the whole hand'''
+
+        # Make sure to uncomment the call to move_hand
+        # or the signals will not be sent to the real hand,
+        # they are commented so the gui will work even
+        # if you are not connected, otherwise the app
+        # would crash instantly
         fingers = {
             'f1': int(self.ids.f1.value),
             'f2': int(self.ids.f2.value),
@@ -124,15 +130,23 @@ class RoboCopForm(BoxLayout):
             'f4': int(self.ids.f4.value),
             'f5': int(self.ids.f5.value)}
         print(json.dumps(fingers))
-        # requests.get(url, params=fingers)
 
-        # wrapper.move_hand(int(self.ids.f1.value), int(self.ids.f2.value),
-        #                   int(self.ids.f3.value), int(self.ids.f4.value), int(self.ids.f5.value))
+        # wrapper.move_hand(int(self.ids.f1.value),
+        #                   int(self.ids.f2.value),
+        #                   int(self.ids.f3.value),
+        #                   int(self.ids.f4.value),
+        #                   int(self.ids.f5.value))
 
 
     def send_gesture(self, key):
         '''This callback is called when the user
         presses one of the saved gestures'''
+
+        # Make sure to uncomment the call to move_hand
+        # or the signals will not be sent to the real hand,
+        # they are commented so the gui will work even
+        # if you are not connected, otherwise the app
+        # would crash instantly
         global gestures
         fingers = {
             'f1': int(gestures[key][0]),
@@ -142,7 +156,6 @@ class RoboCopForm(BoxLayout):
             'f5': int(gestures[key][4]),
         }
         print(json.dumps(fingers))
-        # requests.get(url, params=fingers)
 
         # wrapper.move_hand(int(gestures[key][0]),
         #                       int(gestures[key][1]),
