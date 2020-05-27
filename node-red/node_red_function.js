@@ -1,3 +1,18 @@
+/*
+This script is part of the RoboCop project.
+It serves as backend for the robotic hand.
+Incoming, http request, node-red messages
+get turned into power signals for the raspberry pi.
+
+There are three steps involved
+1: Define minimum and maximum extension values
+    MAKE SURE TO CHANGE VALUES SLOWLY!
+    CAREFUL TO NOT OVERLOAD THE SERVOES!
+    const minMaxFFingerIndex = [ minValue, maxValue ];
+
+2: Convert query value to fingers value in min max range.
+*/
+
 const minMaxF1 = [ 8, 17 ];
 const minMaxF2 = [ 6, 17 ];
 const minMaxF3 = [ 9, 20 ];
