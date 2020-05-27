@@ -17,6 +17,9 @@ from functools import partial
 
 from kivy import Config
 from kivy.config import Config
+
+import sys
+sys.path.append(os.getcwd())
 from api import wrapper, config
 import api
 
