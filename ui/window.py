@@ -19,7 +19,7 @@ from kivy import Config
 from kivy.config import Config
 
 import sys
-sys.path.append(os.getcwd())
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from api import wrapper, config
 import api
 
@@ -194,7 +194,7 @@ class LayoutApp(App):
 
 if __name__ == '__main__':
     load_gestures()
-    if api.first_time_function():
+    if api.first_time():
         config.main()
     Config.set('graphics', 'resizable', False)
     app = LayoutApp().run()
