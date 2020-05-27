@@ -120,8 +120,8 @@ class RoboCopForm(BoxLayout):
 
         # Make sure to uncomment the call to move_hand
         # or the signals will not be sent to the real hand,
-        # they are commented so the gui will work even
-        # if you are not connected, otherwise the app
+        # they are commented so the gui will work while
+        # you are still not connected properly, otherwise the app
         # would crash instantly
         fingers = {
             'f1': int(self.ids.f1.value),
@@ -144,8 +144,8 @@ class RoboCopForm(BoxLayout):
 
         # Make sure to uncomment the call to move_hand
         # or the signals will not be sent to the real hand,
-        # they are commented so the gui will work even
-        # if you are not connected, otherwise the app
+        # they are commented so the gui will work while
+        # you are still not connected properly, otherwise the app
         # would crash instantly
         global gestures
         fingers = {
