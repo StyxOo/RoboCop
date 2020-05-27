@@ -1,5 +1,5 @@
 import tkinter as tk
-import api_wrapper as wrapper
+import api as wrapper
 
 
 def main():
