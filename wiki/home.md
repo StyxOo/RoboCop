@@ -3,67 +3,59 @@
 This is our RoboCop control handbook. Your guide for controling your own robotic hand.
 
 ### What is this?
-The documentation for all technicals aspects of the robitc hand project. It was created as a result of the ZSWIE 2020 semester summer project.
+The documentation for all aspects of the robotic hand project.
 
 ### Aha?
-Our goal was controlling a robotic hand via custom gui. The mechanical part of the hand already existed. It was the result of [another project](LINK). We exchanged the custom controller board with a raspberry pi and created a whole new interface.  
+Our goal was to control a robotic hand via custom GUI . The mechanical part of the hand already existed. It was the result of another project. We exchanged the custom controller board with a raspberry pi and created a whole new interface.  
 TODO: Video  
 
 ### Cool! Can I have that as well?
 Of course. And really easy as well. But let us start at the beginning.
+
+***
+
 #### Giving life to the brain of the arm
-Plug in the raspberry pi. It is that simple. It will take some time to fully come alive, so feel free to grab a coffe. The next thing we do is opening the gui. You can even find it in this repository. Simply run the [ADD-SHORTCUT](Create_shortcut_in_repositories_main_directory_for_each_operating_system). If it is your first time, it should now look like this:
+Plug in the raspberry pi. It is that simple. It will take some time to fully come alive, so feel free to grab a coffe. The next thing we do is opening the GUI. You can even find it in this repository. Simply run `python ui/window.py` in the gits root directory. If it is your first time, it should now look like this:
 [IMAGE](image)  
-Here you should enter the local ip of the brain. To find out how to find it, please have a look [here](LINK). The default port used is 1880. If you have not yet messed with the project, You do not need to change it. Otherwise you probably know which port you set it to. The one that the raspberry pi's local node-red server is running on. Oh you want to change it? [No problem](LINK).
+Here you should enter the local ip of the brain. To find out how to find it, please have a look [here](https://techtutorialsx.com/2018/05/20/raspberry-pi-3-getting-the-local-ip-address/). The default port used is 1880. If you have not yet messed with the project, You do not need to change it. Otherwise you probably know which port you set it to. The one that the raspberry pi's local node-red server is running on. Oh you want to change it? [No problem](https://nodered.org/docs/user-guide/runtime/configuration).
 Once you save the configuration, it will open the main ui. You will be greeted with this screen:
 [IMAGE](image)  
 Pretty cool, right? Now you can start moving fingers and making gestures.
 #### But nothing is moving
-In this case, you still need to bring life to the actual arm itself. Simply connect the power supply. In our case, this means attaching a 7.4V 1500mA power supply. If this info does not help you, please ask someone familiar with electronics. In our case it now looks like this:
+In this case, you still need to bring life to the actual arm itself. Simply connect the power supply. In our case, this means attaching a 7.4V 1500mA power supply. If this info does not help you, please ask someone familiar with electronics. Because making errors here can result in damaging the hardware. In our case it now looks like this:
 [IMAGE](LINK)
 Once this is done, we are good to go. Move fingers as you please, save current finger extensions with names
 
-#### So. Many. Questions...
-What even is this?  
-Am I even connected to same local area network?  
-What is my raspberry pis ip?  
-Why is the UI not starting?  
-I plugged everything in but nothing is happening..?  
-How is it working?  
-Can I change things?  
+***
 
-
-### What even is this?
-This is a university summer semester project. We where given a mechanical arm, which can move it's fingers. Once we get the servoes inside working. So we connected a raspberry pi, created a small api using node-red, and made a beautifully simple ui.
+## So. Many. Questions...
+[Am I even connected to same local area network?](#am-i-even-connected-to-the-same-local-area-network)  
+[What is my raspberry pis ip?](#what-is-my-raspberry-pis-id)  
+[Why is the UI not starting?](#why-is-the-ui-not-starting)   
+[How is all this working?](#how-is-all-of-this-working)  
+[Can I change things?](#can-i-change-things)  
 
 ### Am I even connected to the same local area network?
-I can not really help you with that one. But have a look [here](LINK).
+I can not really help you with that one. But have a look [here](https://superuser.com/questions/866720/how-do-i-know-if-two-machines-are-on-same-lan).
 
 ### What is my raspberry pis ip?  
-This is something you need to find out yourself. Luckily other smart people have already created a lot of guids for exactly this topic. Have a look at [this one]() for example.
+This is something you need to find out yourself. Luckily other smart people have already created a lot of guids for exactly this topic. Have a look at [this one](https://techtutorialsx.com/2018/05/20/raspberry-pi-3-getting-the-local-ip-address/) for example.
 
 ### Why is the UI not starting?
-The UI is created in [python3](LINK) using the [kivy packLINKage](LINK). Make sure you have those installed first.
+The UI is created in [python3](https://www.python.org) using the [kivy package](https://kivy.org/#home). Make sure you have those installed first.
 
-### How?
-We split the work in three different parts.  
- - Controlling the servoes inside the arm 
- - Creating a gougous gui
- - Connect them together  
+### How is all this working?
+To make this project happen, there are several parts involved. to understand them, let us track what happens when you interact with the GUI. When moving a slider in the GUI, it reads its values and passes them to our python api package. This converts the signal into a HTTP request and sends it to the ip and port specified by its config.json. the raspberry pi is running a locally hosted node-red server. It listens for incoming HTTP request. Once recieved, it processes it to PWN signals for the raspberry pi. These send a current to the servoes in the arm and make them move. This is all a bit vague, so lets look at the components a bit closer. Starting with the
 
-All three of them work together to make the final result possible. The servoes inside the arm recieve a voltage provided via a raspberry pi. The raspberry pi is reciving its signal on a locally hosted node-red server. Those signals get set by the gui. But lets take these steps slowly. First we
+#### GUI
+The GUI is written in python using the kivy package. The layout of the window is defined in the `layout.kv` file. The python script acutally making things happen is called `window.py`. Both those files can be found in the `ui` subdirectory. Saving and loading gestures is managed by this script as well. Gestures are saved in the `gestures.json` file. When a gesture is selected or a slider is moved, it makes use of the 
 
-# Start up the hand
-Connect the raspberry pi to its power supply. It will start up its OS and lauch the node-red server. Now it is ready to be connected to. If you just want to move some fingers and fast, you will need a screen connected to the raspberry pi. Open a browser and navigate to [128.0.0.1:1800/ui](128.0.0.1:1800/ui). Here you can find sliders for each of fingers extends. Attach the hands servos to their power supply and watch some fingers wiggle. Congratulations on your success if this is all you ever wanted. If you want to be able to control the hand through our custom extended gui, there are a few more things to to. If you are running it the first time, that is.
-First we connect the raspberry pi to the same local area network as our controler will connect to. The second thing is to acquire the local network ip of the raspberry pi. If you want to know how, have a look [here]()
+#### API package
+The api package is created as a wrapper for the possible HTTP requests. It takes finger extension amounts and its configuration to turn them into requests usng the requests module. It comes with a small tkinter based ui for changing ip and port in the configuration. This window can be launched at any time by running the `config.py` file. It is also run when opening the GUI for the first time, or pressing its config button. If your goal is to create a new application which depermines how much fingers should be moved, but do not want to touch the raspberry pi and how it works, you can also make use of this package. Sent HTTP requests will be recieved by
 
-# Start up the gui
-To start the gui is a bit more exciting. Especially for the first time. 
-??? Python stuffs, please add (requirements, start command)
-??? configure ip, please add
-Now you should be able to move the fingers, as well as performe and define functions in the gui. Very cool. You want more?
+#### Node-RED
+Node-RED runs as a locally hosted server on the raspberry pi. It launches itself on startup. By default it listens to port 1880. This can be changed as needed. Refer to the NODE-RED documentation for this. There are two flows definded in Node-RED. They is a backup for both of them in the node-red subdirectory. The API flow listens for incoming http requests and, if the parameters match, converts them to pwn signals. this is achived with a function node. A backup for the function run inside this node can be found in the `node_red_function.js`.
+The Debug flow renders a webpage with sliders for the fingers as well. This can be used to quickly test the hands inner workings. For example if you wnat to change servoes. It is also good for finding maximum and minimum values for the pwn signal to not stress the motors too much. In the node-red function, these values can be set individually for each finger. It is advised to only ever have one flow active to not have conflicting signals.
 
-# Start extending the project
-If you want to extend the system, you first have to understand it. There are a few things we need to go through. Lets start with the raspberr pi. It is running a local node-red server. You can learn more about this [here](). For changing the servers base values , like the port used, please refer to the node-red documentation. To run the node-red server run `node-red start` in your terminal. This should usually be done automatically at startup. Once the server is running, you can use a browser to change its behaviour. Navigate to [128.0.0.1:1880/]. Here you can find our two flows. There is a backup [in this repository](). To use it, follow [this]() guide.
-One flow manages the local online debugging interface. The other one is our api implementation. The api consist mainly of a function node. To get into it, some JavaScript knowedge is required. Furthermore you should have a look at the node-red flow system and the message object passed between them.  
-Next we will have a look at the python api_wrapper package. You can find it [here]() It creates HTTP requests for the fingers as needed. If you want to create a new ui, you can still use this package for your convenience.
+#### Can I change things?
+Of course. Everything we use to make this work can be found in this git. and therfore you can change anything you like. Have fun :)
