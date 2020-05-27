@@ -3,7 +3,7 @@ Here you can find our api wrapper. This folder is designed as a python package. 
 
 ### Requirements
  - Python 3.8
- - `wrapper.py` makes use of the [requests]() package
+ - `wrapper.py` makes use of the [requests](https://requests.readthedocs.io/en/master/) package
 
 ### Notes
 You can use the wrapper standalone as basis for any other project.
