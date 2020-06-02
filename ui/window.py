@@ -131,11 +131,11 @@ class RoboCopForm(BoxLayout):
             'f5': int(self.ids.f5.value)}
         print(json.dumps(fingers))
 
-        # wrapper.move_hand(int(self.ids.f1.value),
-        #                   int(self.ids.f2.value),
-        #                   int(self.ids.f3.value),
-        #                   int(self.ids.f4.value),
-        #                   int(self.ids.f5.value))
+        wrapper.move_hand(int(self.ids.f1.value),
+                          int(self.ids.f2.value),
+                          int(self.ids.f3.value),
+                          int(self.ids.f4.value),
+                          int(self.ids.f5.value))
 
 
     def send_gesture(self, key):
@@ -157,11 +157,11 @@ class RoboCopForm(BoxLayout):
         }
         print(json.dumps(fingers))
 
-        # wrapper.move_hand(int(gestures[key][0]),
-        #                       int(gestures[key][1]),
-        #                       int(gestures[key][2]),
-        #                       int(gestures[key][3]),
-        #                       int(gestures[key][4]))
+        wrapper.move_hand(int(gestures[key][0]),
+                              int(gestures[key][1]),
+                              int(gestures[key][2]),
+                              int(gestures[key][3]),
+                              int(gestures[key][4]))
 
     def refresh_gestures(self):
         '''This function is called whenever the user

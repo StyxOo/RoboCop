@@ -29,17 +29,20 @@ def _send_request(f1=None, f2=None, f3=None, f4=None, f5=None):
     """
     payload = {}
     if f1 is not None:
-        payload['finger1'] = _clamp_percent(f1)
+        payload['f1'] = _clamp_percent(f1)
     if f2 is not None:
-        payload['finger2'] = _clamp_percent(f2)
+        payload['f2'] = _clamp_percent(f2)
     if f3 is not None:
-        payload['finger3'] = _clamp_percent(f3)
+        payload['f3'] = _clamp_percent(f3)
     if f4 is not None:
-        payload['finger4'] = _clamp_percent(f4)
+        payload['f4'] = _clamp_percent(f4)
     if f5 is not None:
-        payload['finger5'] = _clamp_percent(f5)
-    r = requests.get(_create_request_url(), params=payload)
-    print("Request returned status: {}".format(r.status_code))
+        payload['f5'] = _clamp_percent(f5)
+    try:
+        r = requests.get(_create_request_url(), params=payload)
+        print("Request returned status: {}".format(r.status_code))
+    except:
+        print("Unable to connect")
 
 
 def _clamp_percent(value):
